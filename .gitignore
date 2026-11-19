@@ -1,0 +1,8 @@
+node_modules
+.next
+.data
+.env*
+!.env.example
+public/pdf.worker.min.mjs
+*.tsbuildinfo
+next-env.d.ts
