@@ -65,7 +65,7 @@ The evaluation already paid for itself: it caught street names written as separa
 - **Claude** via the Anthropic SDK with forced tool use; **Zod** for runtime validation of every request and every model response
 - **Tesseract.js** and **pdf.js** for in-browser OCR and PDF text extraction
 - **Telegram Bot API**: deep-link account linking with one-time tokens, webhook with secret-header verification, inline buttons
-- **Vitest**: 55 tests, including database-backed integration tests for reminders and linking
+- **Vitest**: 56 tests, including database-backed integration tests for reminders and linking
 - **Docker** multi-stage build (standalone web image + worker image), **docker compose**, **GitHub Actions** CI
 
 ## Run it locally
@@ -78,7 +78,7 @@ npm run dev            # http://localhost:3000, uses a local PGlite database in 
 No accounts or keys are needed: the offline rules engine and the sample letters work out of the box. Optional extras in `.env` (see [`.env.example`](.env.example)):
 
 - `ANTHROPIC_API_KEY`: switch to AI extraction and plain-English summaries.
-- `TELEGRAM_BOT_TOKEN` and `TELEGRAM_BOT_USERNAME`: enable reminders. Locally, run `TELEGRAM_POLLING=1 npm run worker` so the worker fetches bot messages itself instead of needing a public webhook.
+- `TELEGRAM_BOT_TOKEN`, `TELEGRAM_BOT_USERNAME` and `TELEGRAM_POLLING=1`: enable reminders. With polling on, `npm run dev` fetches the bot's messages itself (no public webhook needed) and sends due reminders every 15 minutes, all in one process, because the local PGlite database can only be opened by one process at a time.
 
 ```bash
 npm test               # unit + integration tests
